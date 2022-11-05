@@ -19,7 +19,7 @@ const routes: Route[] = [
   },
   {
     path: 'classes',
-    loadChildren: () => import('../user/classes/classes.module').then(m => m.ClassesModule)
+    loadChildren: () => import('./classes/classes.module').then(m => m.ClassesModule)
   },
 ]
 

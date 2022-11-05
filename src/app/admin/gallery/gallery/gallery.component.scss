@@ -1,0 +1,40 @@
+h1 {
+  i {
+    margin-left: 8px;
+    cursor: pointer;
+  }
+}
+
+table {
+  width: 100%;
+  margin-bottom: 100px;
+  margin-top: 32px;
+}
+
+.fa-trash,
+.fa-eye {
+  font-size: 1.4rem;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+}
+
+.preview {
+  position: relative;
+
+  &:hover {
+    img {
+      display: block;
+      z-index: 2;
+    }
+  }
+  img {
+    display: none;
+    width: 250px;
+    position: absolute;
+    right: 0;
+  }
+}

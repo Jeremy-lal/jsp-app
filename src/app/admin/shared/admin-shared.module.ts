@@ -1,3 +1,4 @@
+import { FileFormComponent } from './components/file-form/file-form.component';
 import { NoteFormComponent } from './components/note-form/note-form.component';
 import { SharedModule } from './../../shared/shared.module';
 import { UserFormComponent } from './components/user-form/user-form.component';
@@ -11,7 +12,8 @@ import { TableNoteComponent } from './components/table-note/table-note.component
   declarations: [
     UserFormComponent,
     NoteFormComponent,
-    TableNoteComponent
+    TableNoteComponent,
+    FileFormComponent
   ],
   imports: [
     CommonModule, SharedModule

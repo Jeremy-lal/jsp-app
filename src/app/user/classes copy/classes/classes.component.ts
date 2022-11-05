@@ -1,4 +1,4 @@
-import { IFile } from './../../../core/models/file.model';
+import { IFile } from '../../../core/models/file.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

@@ -1,1 +1,45 @@
-<p>galery works!</p>
+<h1>
+  Listes des images
+  <i class="fa-solid fa-circle-plus" (click)="openGalleryForm()"></i>
+</h1>
+
+<table
+  *ngIf="galleryImgs$ | async as galleryImgs"
+  mat-table
+  [dataSource]="galleryImgs"
+  class="mat-elevation-z8"
+>
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let element">{{ element.originalName }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element">
+      <div class="actions">
+        <div class="preview">
+          <i class="fa-solid fa-eye"></i>
+          <img [src]="urlImages + element.name" />
+        </div>
+        <i
+          class="fas fa-trash"
+          (click)="deleteImg(element)"
+          title="Supprimer"
+        ></i>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

@@ -1,0 +1,29 @@
+<h2>Ajouter un fichier</h2>
+<div>
+  <input
+    type="file"
+    name="image"
+    accept="pdf/*"
+    (change)="selectFile($event)"
+  />
+</div>
+
+<mat-form-field class="demo-full-width" appearance="fill">
+  <mat-label>Choisir le statut</mat-label>
+  <select
+    matNativeControl
+    [(ngModel)]="groupeSelected"
+    [ngModelOptions]="{ standalone: true }"
+  >
+    <option value="Jsp1">Jsp1</option>
+    <option value="Jsp2">Jsp2</option>
+    <option value="Jsp3">Jsp3</option>
+    <option value="Jsp4">Jsp4</option>
+    <option value="Admin">Admin</option>
+    <option value="Commun">Commun</option>
+  </select>
+</mat-form-field>
+
+<div>
+  <button type="submit" (click)="onSubmit()">Valider</button>
+</div>
