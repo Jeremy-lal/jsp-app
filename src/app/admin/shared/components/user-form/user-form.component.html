@@ -1,0 +1,80 @@
+<div class="container">
+  <h2>Formulare utilisateur</h2>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Prénom</mat-label>
+      <input matInput placeholder="Prénom" formControlName="firstname" />
+      <mat-error
+        *ngIf="
+          !userForm.controls['firstname'].valid &&
+          userForm.controls['firstname'].touched
+        "
+      >
+        Champs prénom obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Nom</mat-label>
+      <input matInput placeholder="Nom" formControlName="lastname" />
+      <mat-error
+        *ngIf="
+          !userForm.controls['lastname'].valid &&
+          userForm.controls['lastname'].touched
+        "
+      >
+        Champs Nom obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Nom utilisateur</mat-label>
+      <input matInput placeholder="Mot de passe" formControlName="username" />
+      <mat-error
+        *ngIf="
+          !userForm.controls['username'].valid &&
+          userForm.controls['username'].touched
+        "
+      >
+        Champs Nom utilisateur obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element" appearance="fill" *ngIf="!update">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput placeholder="Mot de passe" formControlName="pwd" />
+      <mat-error
+        *ngIf="
+          !userForm.controls['pwd'].valid && userForm.controls['pwd'].touched
+        "
+      >
+        Le mot de passe dois faire au moins 8 caractères.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="demo-full-width" appearance="fill">
+      <mat-label>Choisir le statut</mat-label>
+      <select matNativeControl formControlName="status">
+        <option value="Jsp1" selected>Jsp1</option>
+        <option value="Jsp2">Jsp2</option>
+        <option value="Jsp3">Jsp3</option>
+        <option value="Jsp4">Jsp4</option>
+        <option value="admin">Admin</option>
+      </select>
+      <mat-error
+        *ngIf="
+          !userForm.controls['status'].valid &&
+          userForm.controls['status'].touched
+        "
+      >
+        Champs Statut obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-element">
+      <button class="button" [disabled]="!userForm.valid">
+        {{ update ? "Modifier" : "Ajouter" }}
+      </button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,68 @@
+<h1>
+  Listes des utilisateurs
+  <i class="fa-solid fa-circle-plus" (click)="openUserForm()"></i>
+</h1>
+
+<mat-chip-list aria-label="Dog selection">
+  <mat-chip (click)="filter('all')">Tous</mat-chip>
+  <mat-chip (click)="filter('Jsp1')">JSP1</mat-chip>
+  <mat-chip (click)="filter('Jsp2')">JSP2</mat-chip>
+  <mat-chip (click)="filter('Jsp3')">JSP3</mat-chip>
+  <mat-chip (click)="filter('Jsp4')">JSP4</mat-chip>
+  <mat-chip (click)="filter('admin')">Admin</mat-chip>
+  <mat-chip (click)="filter('superAdmin')">SuperAdmin</mat-chip>
+</mat-chip-list>
+
+<table mat-table [dataSource]="usersFiltered" class="mat-elevation-z8">
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="position">
+    <th mat-header-cell *matHeaderCellDef>No.</th>
+    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="firstname">
+    <th mat-header-cell *matHeaderCellDef>Prénom</th>
+    <td mat-cell *matCellDef="let element">{{ element.firstname }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="lastname">
+    <th mat-header-cell *matHeaderCellDef>Nom</th>
+    <td mat-cell *matCellDef="let element">{{ element.lastname }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Statut</th>
+    <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let element" class="actions">
+      <i class="fas fa-cog" [matMenuTriggerFor]="menu"></i>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="openNote(element)">
+          <i class="fa-solid fa-graduation-cap ml"></i>
+          <span>Note</span>
+        </button>
+        <button mat-menu-item (click)="updateUser(element)">
+          <i class="fas fa-pen ml"></i>
+          <span>Modifier</span>
+        </button>
+        <!-- <button mat-menu-item (click)="displayPwdRefresh = true">
+          <i class="fas fa-sync-alt ml"></i>
+          <span>Réinitialiser le mot de passe</span>
+        </button> -->
+        <button mat-menu-item (click)="deleteUser(element.id)">
+          <i class="fas fa-trash ml"></i>
+          <span>Supprimer</span>
+        </button>
+      </mat-menu>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

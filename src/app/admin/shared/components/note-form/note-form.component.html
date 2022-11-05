@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Ajouter une note</h2>
+  <form [formGroup]="noteForm" (ngSubmit)="createNote()">
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Evaluation</mat-label>
+      <input matInput placeholder="Evaluation" formControlName="title" />
+      <mat-error
+        *ngIf="
+          !noteForm.controls['title'].valid &&
+          noteForm.controls['title'].touched
+        "
+      >
+        Champs évaluation obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="form-element" appearance="fill">
+      <mat-label>Note</mat-label>
+      <input
+        matInput
+        placeholder="Note"
+        formControlName="valeur"
+        type="number"
+        min="0"
+        max="20"
+      />
+      <mat-error
+        *ngIf="
+          !noteForm.controls['valeur'].valid &&
+          noteForm.controls['valeur'].touched
+        "
+      >
+        Champs note obligatoire
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-element">
+      <button class="button" [disabled]="!noteForm.valid">Ajouter</button>
+    </div>
+  </form>
+</div>

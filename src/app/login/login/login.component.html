@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="forms-container">
+    <div class="signin">
+      <form class="sign-in-form" [formGroup]="signInForm" (ngSubmit)="login()">
+        <h2 class="title">Connexion</h2>
+
+        <div class="input-field">
+          <i class="fas fa-user"></i>
+          <input
+            type="text"
+            placeholder="Identifiant"
+            name="identifiant"
+            formControlName="username"
+            required
+          />
+        </div>
+
+        <div class="input-field">
+          <i class="fas fa-lock"></i>
+          <input
+            type="password"
+            placeholder="Mot de passe"
+            name="password"
+            formControlName="pwd"
+            required
+            (keyup.enter)="login()"
+          />
+        </div>
+
+        <p class="badAuth" [hidden]="!badPWD">
+          Erreur de l'identifiant ou du mot de passe
+        </p>
+
+        <input
+          type="submit"
+          value="Connexion"
+          class="btn solid"
+          (click)="login()"
+        />
+      </form>
+    </div>
+  </div>
+</div>

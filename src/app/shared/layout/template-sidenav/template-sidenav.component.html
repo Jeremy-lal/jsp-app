@@ -1,0 +1,50 @@
+<mat-drawer-container class="container">
+  <mat-drawer mode="side" opened>
+    <img src="../../../../assets/img/logo.png" alt="logo section" />
+
+    <ul>
+      <li>
+        <span (click)="chatSelected = !chatSelected"
+          ><i class="fa-solid fa-comments"></i>Chat</span
+        >
+        <ul *ngIf="chatSelected">
+          <li (click)="goToChannel('Commun')">#Commun</li>
+          <li (click)="goToChannel('Question')">#Question</li>
+          <li (click)="goToChannel('JSP1')">#JSP1</li>
+          <li (click)="goToChannel('JSP2')">#JSP2</li>
+          <li (click)="goToChannel('JSP3')">#JSP3</li>
+          <li (click)="goToChannel('JSP4')">#JSP4</li>
+        </ul>
+      </li>
+      <li routerLink="/user/profile">
+        <i class="fa-solid fa-user"></i> Profil
+      </li>
+      <li routerLink="classes">
+        <i class="fa-solid fa-graduation-cap"></i>Cours
+      </li>
+      <li routerLink="/admin/gallery">
+        <i class="fa-solid fa-images"></i>Galerie
+      </li>
+      <li routerLink="/admin/users">
+        <i class="fa-solid fa-user-shield"></i>Admin
+      </li>
+    </ul>
+
+    <div class="user" (click)="drowpdown = !drowpdown">
+      <div class="picture">qd</div>
+      <div>
+        <p class="name">Paul</p>
+        <p class="company">@JSP1</p>
+      </div>
+      <i class="down-caret-outlined-black-400"></i>
+      <ul class="dropdown" *ngIf="drowpdown">
+        <li (click)="logout()">
+          <i class="logout-outlined-black-500"></i>Se déconnecter
+        </li>
+      </ul>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content>
+    <ng-content #outlet="outlet"></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>
