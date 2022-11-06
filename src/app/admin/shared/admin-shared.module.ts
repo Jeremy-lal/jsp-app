@@ -1,19 +1,15 @@
-import { FileFormComponent } from './components/file-form/file-form.component';
+import { NoteAdminComponent } from './components/note-admin/note-admin.component';
 import { NoteFormComponent } from './components/note-form/note-form.component';
 import { SharedModule } from './../../shared/shared.module';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableNoteComponent } from './components/table-note/table-note.component';
-
-
 
 @NgModule({
   declarations: [
     UserFormComponent,
     NoteFormComponent,
-    TableNoteComponent,
-    FileFormComponent
+    NoteAdminComponent
   ],
   imports: [
     CommonModule, SharedModule

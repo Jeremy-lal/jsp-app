@@ -1,7 +1,7 @@
-import { FilesService } from './../../../../core/services/file-service';
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { IFile } from 'src/app/core/models/file.model';
+import { FilesService } from 'src/app/core/services/file-service';
 
 @Component({
   selector: 'app-file-form',

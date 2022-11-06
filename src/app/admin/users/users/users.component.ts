@@ -1,4 +1,5 @@
-import { TableNoteComponent } from './../../shared/components/table-note/table-note.component';
+import { AuthService } from 'src/app/core/services/auth-service';
+import { NoteAdminComponent } from './../../shared/components/note-admin/note-admin.component';
 import { UserService } from 'src/app/core/services/user-service';
 import { UserFormComponent } from '../../shared/components/user-form/user-form.component';
 import { IUser } from './../../../core/models/user.model';
@@ -13,15 +14,18 @@ import { MatDialog } from '@angular/material/dialog';
 export class UsersComponent implements OnInit {
   users: IUser[] = []
   usersFiltered: IUser[] = []
+  displayPwdRefresh = false;
+
+  userSelected!: IUser;
+  newPwd = ''
 
   displayedColumns = ['position', 'firstname', 'lastname', 'status', 'actions']
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private userService: UserService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.route.data.subscribe(({ users }) => {
       const data = users.reverse()
-
       this.users = data ?? []
       this.usersFiltered = data ?? []
     })
@@ -43,7 +47,7 @@ export class UsersComponent implements OnInit {
   }
 
   openNote(user: IUser) {
-    this.dialog.open(TableNoteComponent, {
+    this.dialog.open(NoteAdminComponent, {
       width: '50%',
       data: user
     });
@@ -60,4 +64,15 @@ export class UsersComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(() => window.location.reload());
   }
+
+  validateRefresh() {
+    this.authService.refreshPwd(this.userSelected, this.newPwd).subscribe(
+      () => {
+        alert('Mot de passe réinitialisé avec succès')
+      },
+      (err) => {
+        alert('Erreur lors de la réinitialisation du mot de passe')
+      })
+  }
+
 }

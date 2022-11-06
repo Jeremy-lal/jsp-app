@@ -1,3 +1,8 @@
+import { CommentFormComponent } from './components/comment-form/comment-form.component';
+import { FileFormComponent } from './components/file-form/file-form.component';
+import { NewPwdFormComponent } from './components/new-pwd-form/new-pwd-form.component';
+import { ProfilPictureComponent } from './components/profil-picture/profil-picture.component';
+import { TableNoteComponent } from './components/table-note/table-note.component';
 import { RouterModule } from '@angular/router';
 import { TemplateSidenavComponent } from './layout/template-sidenav/template-sidenav.component';
 import { TemplateEmptyComponent } from './layout/template-empty/template-empty.component';
@@ -12,7 +17,12 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     TemplateEmptyComponent,
-    TemplateSidenavComponent
+    TemplateSidenavComponent,
+    TableNoteComponent,
+    ProfilPictureComponent,
+    NewPwdFormComponent,
+    FileFormComponent,
+    CommentFormComponent
   ],
   imports: [
     CommonModule,
@@ -28,7 +38,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    TableNoteComponent,
+    ProfilPictureComponent,
+    NewPwdFormComponent,
+    FileFormComponent,
+    CommentFormComponent
   ]
 })
 export class SharedModule { }

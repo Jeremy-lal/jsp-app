@@ -1,7 +1,8 @@
+import { AuthService } from 'src/app/core/services/auth-service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IUser, User } from 'src/app/core/models/user.model';
+import { User } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user-service';
 
 @Component({
@@ -10,8 +11,8 @@ import { UserService } from 'src/app/core/services/user-service';
   styleUrls: ['./user-form.component.scss']
 })
 export class UserFormComponent implements OnInit {
-  currentUser!: User;
   update = false;
+  isSuperAdmin = false;
 
   userForm = this.fb.group({
     firstname: ['', Validators.required],
@@ -22,9 +23,10 @@ export class UserFormComponent implements OnInit {
   });
 
   constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<UserFormComponent>, public userService: UserService,
-    @Inject(MAT_DIALOG_DATA) public userToUpdate: User) { }
+    @Inject(MAT_DIALOG_DATA) public userToUpdate: User, private authService: AuthService) { }
 
   ngOnInit() {
+    this.isSuperAdmin = this.authService.isSuperAdmin
     if (this.userToUpdate) {
       this.update = true;
       this.userForm.controls.firstname.setValue(this.userToUpdate.firstname);

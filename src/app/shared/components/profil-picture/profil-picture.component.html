@@ -1,0 +1,13 @@
+<div class="user">
+  <label
+    for="upload"
+    [ngStyle]="{ 'background-image': 'url(' + imgUrl + user.imgURL + ')' }"
+  >
+  </label>
+  <input
+    id="upload"
+    class="hidden"
+    type="file"
+    (change)="selectImage($event)"
+  />
+</div>

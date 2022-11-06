@@ -16,11 +16,7 @@ const routes: Route[] = [
   {
     path: 'chat',
     loadChildren: () => import('../user/chat/chat.module').then(m => m.ChatModule)
-  },
-  {
-    path: 'classes',
-    loadChildren: () => import('./classes/classes.module').then(m => m.ClassesModule)
-  },
+  }
 ]
 
 @NgModule({

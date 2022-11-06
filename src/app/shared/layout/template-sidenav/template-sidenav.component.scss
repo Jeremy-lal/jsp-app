@@ -2,6 +2,9 @@
   width: 100vw;
   height: 100vh;
 }
+.padding {
+  padding: 40px 50px;
+}
 
 mat-drawer {
   background-color: rgb(10, 21, 53);
@@ -42,7 +45,7 @@ mat-drawer {
   }
 }
 
-.user {
+.logout {
   position: fixed;
   bottom: 20px;
   left: 24px;
@@ -50,37 +53,12 @@ mat-drawer {
   display: flex;
   margin: auto;
   margin-bottom: 8px;
+  font-size: 1.2rem;
+  color: white;
+  cursor: pointer;
 
-  .picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #e1f3f7;
+  i {
     margin-right: 8px;
-
-    font-family: "Nunito";
-    font-weight: 700;
-    font-size: 18px;
-    color: #396684;
-  }
-
-  .name {
-    font-family: Nunito;
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 0;
-    width: 144px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-
-  .company {
-    font-family: Merriweather;
-    font-size: 12px;
   }
 }
 
@@ -123,8 +101,4 @@ mat-drawer {
   li:last-child {
     border-top: 1px solid #e3e7f1;
   }
-}
-
-mat-drawer-content {
-  padding: 40px 50px;
 }

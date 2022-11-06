@@ -1,0 +1,18 @@
+mat-form-field {
+  width: 90%;
+}
+
+textarea {
+  resize: none;
+}
+
+.form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+button {
+  background-color: rgb(10, 21, 53);
+  color: white;
+}

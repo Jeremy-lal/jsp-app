@@ -1,0 +1,33 @@
+<form [formGroup]="newPwd" (ngSubmit)="changePwd()">
+  <h2>Changer son mot de passe</h2>
+
+  <mat-form-field class="form-element" appearance="fill">
+    <mat-label>Mot de passe actuel</mat-label>
+    <input matInput formControlName="pwd" type="password" />
+  </mat-form-field>
+
+  <mat-form-field class="form-element" appearance="fill">
+    <mat-label>Nouveau mot de passe (8 charactères minimum)</mat-label>
+    <input matInput formControlName="newPwd1" type="password" />
+  </mat-form-field>
+
+  <mat-form-field class="form-element" appearance="fill">
+    <mat-label>Confirmer le nouveau mot de passe</mat-label>
+    <input matInput formControlName="newPwd2" type="password" />
+  </mat-form-field>
+
+  <mat-error *ngIf="message?.length! > 0">
+    {{ message }}
+  </mat-error>
+
+  <div>
+    <button
+      mat-raised-button
+      type="submit"
+      class="form-btn"
+      [disabled]="!newPwd.valid"
+    >
+      Valider
+    </button>
+  </div>
+</form>

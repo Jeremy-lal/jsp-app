@@ -10,12 +10,13 @@ import { Injectable } from '@angular/core';
 })
 export class FilesService {
   static URL = environment.serverUrl.file;
+  static URL_PICTURE = environment.serverUrl.picture
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   getUserFiles(): Observable<IFile[]> {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
-    return this.http.get<IFile[]>(FilesService.URL + 'user', { headers })
+    return this.http.get<IFile[]>(FilesService.URL + 'by/user', { headers })
   }
 
   getAll(): Observable<IFile[]> {
@@ -35,5 +36,9 @@ export class FilesService {
 
   saveFile(formData: any) {
     return this.http.post<any>(FilesService.URL, formData)
+  }
+
+  saveProfilPicture(formData: any) {
+    return this.http.post<any>(FilesService.URL_PICTURE, formData)
   }
 }

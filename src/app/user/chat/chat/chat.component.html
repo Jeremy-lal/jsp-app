@@ -1,1 +1,25 @@
-<p>channel {{ channel }}</p>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
+    <p>responses</p>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <mat-grid-list cols="1" rowHeight="8.2vh">
+      <mat-grid-tile
+        ><mat-card>
+          <h1>{{ channel }}</h1>
+        </mat-card>
+      </mat-grid-tile>
+
+      <mat-grid-tile rowspan="10">
+        <button type="button" mat-button (click)="toggleSide()">
+          Toggle sidenav
+        </button>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <comment-form></comment-form>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</mat-drawer-container>

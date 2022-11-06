@@ -1,0 +1,10 @@
+section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 64px;
+
+  new-pwd-form,
+  app-table-note {
+    width: 48%;
+  }
+}

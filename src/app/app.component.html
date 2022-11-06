@@ -1,4 +1,4 @@
-<template-sidenav *ngIf="!emptyTemplate">
+<template-sidenav *ngIf="!emptyTemplate" [padding]="padding">
   <ng-container *ngTemplateOutlet="template"></ng-container>
 </template-sidenav>
 <template-empty *ngIf="emptyTemplate">

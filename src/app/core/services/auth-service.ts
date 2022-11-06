@@ -1,24 +1,23 @@
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 import { IUser } from '../models/user.model';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
   static URL = environment.serverUrl.user;
   static URL_AUTH = environment.serverUrl.auth;
 
   token: string | undefined;
   currentUser: IUser | undefined;
+  isAdmin = false;
+  isSuperAdmin = false;
 
   constructor(private http: HttpClient) { }
-
 
   setToken(token: string) {
     this.token = token;
@@ -34,6 +33,10 @@ export class AuthService {
 
   authenticate(): Observable<boolean> {
     return this.getCurrentUser().pipe(
+      tap(el => {
+        this.isAdmin = ['admin', 'superAdmin'].includes(el.status);
+        this.isSuperAdmin = 'superAdmin' === el.status;
+      }),
       map((user: IUser) => (user != null && user.id != null)));
   }
 
@@ -45,22 +48,6 @@ export class AuthService {
         this.currentUser = response.body;
         return response.body;
       }));
-  }
-
-  // getAllUsersByGroups(): Observable<UsersByGoups> {
-  //   const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
-  //   return this.http.get<UsersByGoups>(AuthService.URL + 'groups', { headers });
-  // }
-
-  getUsersByGroup(grp: string): Observable<IUser[]> {
-    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
-    return this.http.get<IUser[]>(AuthService.URL + 'role/' + grp, { headers });
-  }
-
-  updateUserPicture(userToUpdate: IUser) {
-    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.token });
-    const id = userToUpdate.id;
-    return this.http.put(AuthService.URL + 'picture/' + id, userToUpdate, { headers });
   }
 
   updateUserPwd(password: string, newPassword: string): Observable<string> {
@@ -81,7 +68,4 @@ export class AuthService {
     };
     return this.http.put<string>(AuthService.URL_AUTH + 'pwd/refresh', params, { headers });
   }
-
-
-
 }

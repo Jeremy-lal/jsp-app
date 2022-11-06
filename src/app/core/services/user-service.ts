@@ -30,6 +30,12 @@ export class UserService {
     return this.http.put(AuthService.URL + id, userToUpdate, { headers });
   }
 
+  updateUserPicture(userToUpdate: IUser) {
+    const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
+    const id = userToUpdate.id;
+    return this.http.put(AuthService.URL + 'picture/' + id, userToUpdate, { headers });
+  }
+
   deleteUser(id: number) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
     return this.http.delete(AuthService.URL + id, { headers });

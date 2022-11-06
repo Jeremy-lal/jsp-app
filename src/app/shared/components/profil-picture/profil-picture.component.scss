@@ -1,0 +1,23 @@
+.user label {
+  cursor: pointer;
+  display: block;
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  border: 2px solid rgb(10, 21, 53);
+}
+
+.hidden {
+  width: 1px;
+  opacity: 0;
+}
+
+.company img {
+  display: block;
+  margin: auto;
+  max-height: 200px;
+  cursor: pointer;
+}
