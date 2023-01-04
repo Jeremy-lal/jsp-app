@@ -1,5 +1,5 @@
-<div class="container">
-  <h2>Formulare utilisateur</h2>
+<h1 mat-dialog-title>Formulare utilisateur</h1>
+<div mat-dialog-content class="content">
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <mat-form-field class="form-element" appearance="fill">
       <mat-label>Prénom</mat-label>
@@ -72,8 +72,9 @@
       </mat-error>
     </mat-form-field>
 
-    <div class="form-element">
-      <button class="button" [disabled]="!userForm.valid">
+    <div class="btns">
+      <button type="button" mat-raised-button (click)="close()">Fermer</button>
+      <button mat-raised-button class="save" [disabled]="!userForm.valid">
         {{ update ? "Modifier" : "Ajouter" }}
       </button>
     </div>

@@ -1,47 +1,53 @@
-<h2 *ngIf="!displayForm">
+<h1 mat-dialog-title>
   Note de {{ user.firstname }}
   <i class="fa-solid fa-circle-plus" (click)="displayForm = true"></i>
-</h2>
-<p *ngIf="displayForm">
-  <i class="fa-solid fa-left-long" (click)="displayForm = false"></i>
-</p>
+</h1>
+<div mat-dialog-content class="content" *ngIf="!displayForm">
+  <p *ngIf="notes.length === 0">Pas de note pour cet utilisateur</p>
+  <table
+    mat-table
+    [dataSource]="notes"
+    class="mat-elevation-z8"
+    *ngIf="notes.length > 0"
+  >
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>No.</th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+      <td mat-footer-cell *matFooterCellDef>Moyenne</td>
+    </ng-container>
 
-<p *ngIf="!displayForm && notes.length === 0">
-  Pas de note pour cet utilisateur
-</p>
-<table
-  mat-table
-  [dataSource]="notes"
-  class="mat-elevation-z8"
-  *ngIf="!displayForm && notes.length > 0"
->
-  <ng-container matColumnDef="position">
-    <th mat-header-cell *matHeaderCellDef>No.</th>
-    <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
-    <td mat-footer-cell *matFooterCellDef>Moyenne</td>
-  </ng-container>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef>Evaluation</th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
 
-  <ng-container matColumnDef="title">
-    <th mat-header-cell *matHeaderCellDef>Evaluation</th>
-    <td mat-cell *matCellDef="let element">{{ element.title }}</td>
-    <td mat-footer-cell *matFooterCellDef></td>
-  </ng-container>
+    <ng-container matColumnDef="value">
+      <th mat-header-cell *matHeaderCellDef>Note</th>
+      <td mat-cell *matCellDef="let element">{{ element.valeur }} / 20</td>
+      <td mat-footer-cell *matFooterCellDef>
+        <strong>{{ average }} / 20</strong>
+      </td>
+    </ng-container>
 
-  <ng-container matColumnDef="value">
-    <th mat-header-cell *matHeaderCellDef>Note</th>
-    <td mat-cell *matCellDef="let element">{{ element.valeur }} / 20</td>
-    <td mat-footer-cell *matFooterCellDef>
-      <strong>{{ average }} / 20</strong>
-    </td>
-  </ng-container>
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef class="delete">Actions</th>
+      <td mat-cell *matCellDef="let element" class="delete">
+        <button mat-raised-button color="warn" (click)="deleteNote(element.id)">
+          Supprimer
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef class="delete"></td>
+    </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-  <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-</table>
-
-<app-note-form
-  [user]="user"
-  (newNoteAdded)="addNote($event)"
-  *ngIf="displayForm"
-></app-note-form>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+</div>
+<div mat-dialog-content class="content" *ngIf="displayForm">
+  <app-note-form [user]="user" (newNoteAdded)="addNote($event)"></app-note-form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="cancel()">Fermer</button>
+</div>

@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AuthService } from 'src/app/core/services/auth-service';
 import { NoteAdminComponent } from './../../shared/components/note-admin/note-admin.component';
 import { UserService } from 'src/app/core/services/user-service';
@@ -17,7 +18,7 @@ export class UsersComponent implements OnInit {
   displayPwdRefresh = false;
 
   userSelected!: IUser;
-  newPwd = ''
+
 
   displayedColumns = ['position', 'firstname', 'lastname', 'status', 'actions']
 
@@ -43,7 +44,19 @@ export class UsersComponent implements OnInit {
     const dialogRef = this.dialog.open(UserFormComponent, {
       width: '70%',
     });
-    dialogRef.afterClosed().subscribe(() => window.location.reload())
+    dialogRef.afterClosed().subscribe((reload) => {
+      if (reload) window.location.reload()
+    });
+  }
+
+  updateUser(user: IUser) {
+    const dialogRef = this.dialog.open(UserFormComponent, {
+      width: '70%',
+      data: user
+    });
+    dialogRef.afterClosed().subscribe((reload) => {
+      if (reload) window.location.reload()
+    });
   }
 
   openNote(user: IUser) {
@@ -53,20 +66,27 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  deleteUser(id: number) {
-    this.userService.deleteUser(id).subscribe(() => window.location.reload());
+  deleteUser(user: IUser) {
+    const validate = confirm(`Êtes-vous sûr de vouloir supprimer ${user.firstname} ${user.lastname}`)
+
+    if (validate) {
+      this.userService.deleteUser(user.id!).subscribe(() => window.location.reload());
+    }
   }
 
-  updateUser(user: IUser) {
-    const dialogRef = this.dialog.open(UserFormComponent, {
-      width: '70%',
+  resetPassword(user: IUser) {
+    this.userSelected = user;
+    const dialogRef = this.dialog.open(ResetPasswordComponent, {
+      width: '30%',
       data: user
     });
-    dialogRef.afterClosed().subscribe(() => window.location.reload());
+    dialogRef.afterClosed().subscribe((data) => {
+      if (data) this.validateRefresh(data)
+    });
   }
 
-  validateRefresh() {
-    this.authService.refreshPwd(this.userSelected, this.newPwd).subscribe(
+  validateRefresh(newPwd: string) {
+    this.authService.refreshPwd(this.userSelected, newPwd).subscribe(
       () => {
         alert('Mot de passe réinitialisé avec succès')
       },

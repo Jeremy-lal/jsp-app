@@ -1,4 +1,4 @@
-import { Note } from './note.model';
+import { INote } from './note.model';
 
 export interface IUser {
   id?: number;
@@ -8,7 +8,7 @@ export interface IUser {
   pwd: string;
   status: string;
   imgURL?: string;
-  note?: Note[];
+  note?: INote[];
 }
 
 export class User {
@@ -19,7 +19,7 @@ export class User {
     public username: string,
     public pwd: string,
     public status: string,
-    public note: Note[],
+    public note: INote[],
     public imgURL: string
   ) { }
 }

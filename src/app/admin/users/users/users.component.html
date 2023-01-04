@@ -14,13 +14,7 @@
 </mat-chip-list>
 
 <div class="refreshPwd" *ngIf="displayPwdRefresh">
-  <label
-    >Nouveau mot de passe
-    <input type="text" [(ngModel)]="newPwd" />
-  </label>
-
-  <button (click)="displayPwdRefresh = false">Annuler</button>
-  <button (click)="validateRefresh()">Confirmer</button>
+  <div></div>
 </div>
 
 <table mat-table [dataSource]="usersFiltered" class="mat-elevation-z8">
@@ -61,11 +55,11 @@
           <i class="fas fa-pen ml"></i>
           <span>Modifier</span>
         </button>
-        <button mat-menu-item (click)="displayPwdRefresh = true; userSelected = element">
+        <button mat-menu-item (click)="resetPassword(element)">
           <i class="fas fa-sync-alt ml"></i>
           <span>Réinitialiser le mot de passe</span>
         </button>
-        <button mat-menu-item (click)="deleteUser(element.id)">
+        <button mat-menu-item (click)="deleteUser(element)">
           <i class="fas fa-trash ml"></i>
           <span>Supprimer</span>
         </button>

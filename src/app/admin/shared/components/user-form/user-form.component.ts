@@ -38,19 +38,25 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('sumit');
+
     this.update ? this.updateUser() : this.createUser()
   }
 
   createUser(): void {
     const user = { ...this.getFormValue(), imgURL: 'default.png' }
     this.userService.createUser(user).subscribe();
-    this.dialogRef.close();
+    this.close(true);
   }
 
   updateUser(): void {
     const userUpdated = { ...this.userToUpdate, ...this.getFormValue() }
     this.userService.updateUser(userUpdated).subscribe();
-    this.dialogRef.close();
+    this.close(true);
+  }
+
+  close(reload = false) {
+    this.dialogRef.close(reload);
   }
 
   getFormValue() {

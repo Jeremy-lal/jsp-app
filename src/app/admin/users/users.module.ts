@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './users/reset-password/reset-password.component';
 import { SharedModule } from './../../shared/shared.module';
 import { UserResolver } from './../../core/resolvers/users-resolver';
 import { NgModule } from '@angular/core';
@@ -16,7 +17,8 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    UsersComponent
+    UsersComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

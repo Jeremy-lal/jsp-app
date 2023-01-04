@@ -35,7 +35,14 @@
     </mat-form-field>
 
     <div class="form-element">
-      <button class="button" [disabled]="!noteForm.valid">Ajouter</button>
+      <button
+        mat-raised-button
+        cdkFocusInitial
+        class="save"
+        [disabled]="!noteForm.valid"
+      >
+        Valider
+      </button>
     </div>
   </form>
 </div>
