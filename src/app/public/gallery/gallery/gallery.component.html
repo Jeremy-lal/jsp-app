@@ -5,6 +5,15 @@
       *ngFor="let img of imgs"
       [src]="urlImages + img.name"
       [alt]="img.name"
+      (click)="selectImg(img.id!)"
     />
   </div>
+</div>
+
+<div class="selectImg" *ngIf="displayImg">
+  <i class="fas fa-times" (click)="displayImg = false"></i>
+
+  <i class="fas fa-arrow-circle-left" (click)="previous()"></i>
+  <img [src]="urlImages + getImgSelected()" />
+  <i class="fas fa-arrow-circle-right" (click)="next()"></i>
 </div>

@@ -1,7 +1,6 @@
 import { ActivatedRoute } from '@angular/router';
-import { GalleryService } from './../../../core/services/gallery-service';
 import { Component, OnInit } from '@angular/core';
-import { GalleryImg } from 'src/app/core/models/gallery.model';
+import { IGalleryImg } from 'src/app/core/models/gallery.model';
 import { environment } from 'src/environments/environment';
 
 
@@ -11,8 +10,12 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  images: GalleryImg[] = []
-  imagesDivided: GalleryImg[][] = []
+  images: IGalleryImg[] = []
+  imagesDivided: IGalleryImg[][] = []
+
+  selectedImg!: number;
+  selectedImgPosition!: number;
+  displayImg = false;
 
   urlImages = environment.serverUrl.gallery;
 
@@ -25,13 +28,40 @@ export class GalleryComponent implements OnInit {
     })
   }
 
-  divideArray(arr: GalleryImg[]) {
-    let result: GalleryImg[][] = [[], [], [], []];
+  divideArray(arr: IGalleryImg[]) {
+    let result: IGalleryImg[][] = [[], [], [], []];
     for (let i = 0; i < arr.length; i++) {
       result[i % 4].push(arr[i]);
     }
     return result;
   }
+
+  selectImg(id: number) {
+    this.selectedImg = this.images.findIndex(obj => obj.id === id)
+    this.displayImg = true;
+  }
+
+  getImgSelected() {
+    console.log(this.selectedImg);
+    return this.images[this.selectedImg].name
+  }
+
+  previous() {
+    this.selectedImg -= 1;
+
+    if (this.selectedImg < 0) {
+      this.selectedImg = this.images.length - 1;
+    }
+  }
+
+  next() {
+    this.selectedImg += 1;
+
+    if (this.selectedImg >= this.images.length) {
+      this.selectedImg = 0;
+    }
+  }
+
 
 }
 
