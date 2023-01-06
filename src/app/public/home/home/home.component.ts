@@ -1,7 +1,7 @@
 import { GalleryService } from '../../../core/services/gallery-service';
 import { GalleryImg } from '../../../core/models/gallery.model';
 import { environment } from '../../../../environments/environment';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,37 +9,22 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   sidenav = false;
 
-  images: GalleryImg[] = [];
-  urlImages = environment.serverUrl.gallery;
-
-  constructor(private route: Router, private galleryService: GalleryService) { }
-
-  ngOnInit() {
-    this.getListImg()
-  }
+  constructor(private route: Router) { }
 
   goToHome() {
     this.route.navigateByUrl('/login');
   }
 
-  getListImg() {
-    this.galleryService.getImgGallery().subscribe((data) => {
-      this.images = data;
-      this.images = this.images.slice(0, 3);
-    })
-  }
-
   navigateToSection(element: string) {
     const htmlElement = document.getElementById(element);
-    window.scrollTo({ top: htmlElement!.offsetTop - 260, behavior: 'smooth' });
+    window.scrollTo({ top: htmlElement!.offsetTop - 80, behavior: 'smooth' });
   }
 
   dragonSound() {
     const dragon = new Audio('/assets/audio/dragon.mp3');
-
     dragon.play()
   }
 }

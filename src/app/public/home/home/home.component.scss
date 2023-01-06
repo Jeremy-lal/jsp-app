@@ -3,32 +3,32 @@
   overflow: hidden;
 }
 
-.top {
-  position: fixed;
-  width: 100%;
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(4, 4, 14, 0.9);
+  padding: 10px 0;
+
+  img {
+    width: 110px;
+    margin: 0 50px;
+    cursor: pointer;
+  }
+
+  h1 {
+    color: white;
+    font-size: 2rem;
+    justify-self: center;
+    text-align: center;
+  }
+}
+
+nav {
+  position: sticky;
   top: 0;
   z-index: 2;
-
-  .logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(4, 4, 14, 0.9);
-    padding: 10px 0;
-
-    img {
-      width: 150px;
-      margin: 0 50px;
-      cursor: pointer;
-    }
-
-    h1 {
-      color: white;
-      font-size: 2rem;
-      justify-self: center;
-      text-align: center;
-    }
-  }
+  width: 100%;
 
   .burger {
     display: none;
@@ -63,6 +63,25 @@
       font-size: 2rem;
     }
   }
+
+  .sidenav {
+    display: flex;
+    flex-direction: column;
+    justify-items: start;
+    background-color: rgba(4, 4, 14, 0.9);
+    padding: 2rem;
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    i {
+      margin-right: 0.6rem;
+    }
+  }
 }
 
 .content {
@@ -74,7 +93,7 @@
   .caserne {
     width: 70%;
     align-self: center;
-    margin-top: 250px;
+    margin-top: 32px;
   }
 
   section {
@@ -114,8 +133,9 @@
   .sponsor {
     .imgs {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       align-items: center;
+      flex-wrap: wrap;
 
       img {
         width: 150px;
@@ -174,28 +194,8 @@
   }
 }
 
-.sidenav {
-  // width: 40%;
-  display: flex;
-  flex-direction: column;
-  justify-items: start;
-  background-color: rgba(4, 4, 14, 0.9);
-  padding: 2rem;
-
-  a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-
-  i {
-    margin-right: 0.6rem;
-  }
-}
-
 @media screen and (max-width: 930px) {
-  .top {
+  nav {
     .burger {
       display: block;
       background-color: 4px solid blue;
@@ -325,13 +325,6 @@
   mat-sidenav {
     display: block;
     top: 170px;
-  }
-}
-
-$sticky-breakpoint: 32em;
-[id] {
-  @media (min-height: $sticky-breakpoint) {
-    scroll-margin-top: 210px;
   }
 }
 
