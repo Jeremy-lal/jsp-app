@@ -1,3 +1,28 @@
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(4, 4, 14, 0.9);
+  padding: 10px 0;
+  padding: 2rem 0;
+  margin-bottom: 30px;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+
+  img {
+    width: 130px;
+    margin: 0 70px;
+    cursor: pointer;
+  }
+
+  h1 {
+    color: white;
+    font-size: 2rem;
+    justify-self: center;
+  }
+}
+
 .selectImg {
   position: fixed;
   z-index: 1000;
@@ -45,6 +70,7 @@
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
+  padding-top: 220px;
 }
 
 .column {
