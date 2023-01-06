@@ -1,11 +1,11 @@
-export interface IGallery {
+export interface IGalleryImg {
   id?: number;
   name: string;
   originalName: string;
   created_at?: Date;
 }
 
-export class Gallery {
+export class GalleryImg {
   constructor(
     public name: string,
     public originalName: string,

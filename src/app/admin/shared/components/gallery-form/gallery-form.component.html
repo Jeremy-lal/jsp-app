@@ -1,14 +1,13 @@
-<form>
-  <h2>Ajouter une photo</h2>
-  <div>
-    <input
-      type="file"
-      name="image"
-      accept="image/*"
-      (change)="selectImage($event)"
-    />
-  </div>
-  <div>
-    <button type="button" (click)="onSubmit()">Valider</button>
-  </div>
-</form>
+<h1 mat-dialog-title>Ajouter une photo</h1>
+<div mat-dialog-content>
+  <input
+    type="file"
+    name="image"
+    accept="image/*"
+    (change)="selectImage($event)"
+  />
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="onSubmit()">Valider</button>
+</div>

@@ -1,6 +1,6 @@
 import { DialogRef } from '@angular/cdk/dialog';
 import { Component, OnInit } from '@angular/core';
-import { Gallery } from 'src/app/core/models/gallery.model';
+import { GalleryImg } from 'src/app/core/models/gallery.model';
 import { GalleryService } from 'src/app/core/services/gallery-service';
 
 @Component({
@@ -27,7 +27,7 @@ export class GalleryFormComponent implements OnInit {
     const formData = new FormData();
     const name = `${this.uuidv4()}`;
 
-    const img: Gallery = {
+    const img: GalleryImg = {
       name: name,
       originalName: this.images.name
     }

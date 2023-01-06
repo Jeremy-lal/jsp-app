@@ -33,6 +33,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   exports: [
+    CommonModule,
     TemplateEmptyComponent,
     TemplateSidenavComponent,
     FormsModule,
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     ProfilPictureComponent,
     NewPwdFormComponent,
     FileFormComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    RouterModule
   ]
 })
 export class SharedModule { }

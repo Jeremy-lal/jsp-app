@@ -1,0 +1,246 @@
+<div class="container">
+  <div class="top">
+    <div class="logo">
+      <img
+        src="/assets/img/logo.png"
+        alt="logo section"
+        (click)="dragonSound()"
+      />
+      <h1>Jeunes Sapeurs-Pompiers Paul Saldou - Mérignac</h1>
+      <img
+        src="/assets/img/logo.png"
+        alt="logo section"
+        (click)="dragonSound()"
+      />
+    </div>
+
+    <mat-toolbar color="warn">
+      <mat-toolbar-row>
+        <div class="burger">
+          <button (click)="sidenav = !sidenav">
+            <i class="fas fa-bars"></i>Menu
+          </button>
+        </div>
+
+        <div class="menuLarge">
+          <a (click)="navigateToSection('presentation')" mat-list-item
+            >Présentation</a
+          >
+          <a (click)="navigateToSection('section')" mat-list-item>La section</a>
+          <a (click)="navigateToSection('recrutement')" mat-list-item>
+            Recrutement</a
+          >
+          <a (click)="navigateToSection('histoire')" mat-list-item>Histoire</a>
+          <a (click)="navigateToSection('galerie')" mat-list-item>Galerie</a>
+          <a (click)="navigateToSection('contact')" mat-list-item>Contact</a>
+          <a mat-button (click)="goToHome()"
+            ><i class="fas fa-user" title="Connexion"></i
+          ></a>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div class="sidenav" *ngIf="sidenav">
+      <a (click)="navigateToSection('presentation')" mat-list-item
+        >Présentation</a
+      >
+      <a (click)="navigateToSection('section')" mat-list-item>La section</a>
+      <a (click)="navigateToSection('recrutement')" mat-list-item>
+        Recrutement</a
+      >
+      <a (click)="navigateToSection('histoire')" mat-list-item>Histoire</a>
+      <a (click)="navigateToSection('galerie')" mat-list-item>Galerie</a>
+      <a (click)="navigateToSection('contact')" mat-list-item>Contact</a>
+      <a mat-list-item (click)="goToHome()"
+        ><i class="fas fa-user"></i>Connexion</a
+      >
+    </div>
+  </div>
+
+  <div class="content">
+    <img src="/assets/img/acceuil.jpg" alt="photo jsp" class="caserne" />
+
+    <section>
+      <h2 id="presentation">Présentation</h2>
+      <p class="mgb">
+        La formation se déroule en 4 ans représentant 4 cycles: JSP1, JSP2, JSP3
+        et JSP4.
+      </p>
+
+      <p>Elle aborde différents aspects du métier de pompier:</p>
+      <ul class="mgb">
+        <li>prompt secours (secours à personne),</li>
+        <li>lutte contre les incendies (théorie et manoeuvres),</li>
+        <li>protection des biens et de l'environement,</li>
+        <li>activités sportives.</li>
+      </ul>
+
+      <p>
+        Elle est basée sur l'apprentissage de l'ensemble des techniques des
+        missions des soldats du feu mais aussi sur les valeurs de notre
+        profession telles que le savoir être et l'éthique.
+      </p>
+
+      <p>
+        Cette formation est validée par l'obtention du Brevet National des
+        jeunes sapeurs-pompiers afin de devenir Sapeur-Pompier Volontaire..
+      </p>
+    </section>
+
+    <section>
+      <h2 id="section">La Section</h2>
+      <p>
+        La section de Mérignac est une association qui a pour but de former et
+        recruter des sapeurs-pompiers volontaires ou développer des vocations de
+        sapeurs-pompiers professionnels. Elle est composée de 27 jeunes âgés de
+        13 à 17 ans, résidant sur les communes de Mérignac et Pessac.
+      </p>
+
+      <p>
+        L'équipe pédagogique, de 10 formateurs, forme les jeunes au métier de
+        sapeurs-pompiers au travers de cours théoriques et d'activités pratiques
+        mais également sportives. Les cours ont lieu tous les mercredis
+        après-midi de 14h à 18h30, sauf pendant les vacances scolaires.
+      </p>
+
+      <p>
+        Nos jeunes participent aussi à des manifestations telles que les
+        cérémonies du 11 novembre et du 14 juillet, des épreuves sportives
+        départementales et nationales et au rassemblement technique. ( sous
+        réserve des conditions sanitaires )
+      </p>
+
+      <p>Lors d'un après-midi type, on peut y retrouver dans l'ordre:</p>
+      <ul class="mgb">
+        <li>
+          rassemblement : appel et présentation du programme de la journée,
+        </li>
+        <li>réalisation du programme (théorique et pratique),</li>
+        <li>scéance de sport,</li>
+        <li>douche,</li>
+        <li>nettoyage des locaux,</li>
+        <li>
+          rassemblement pour demander les ressentis ainsi que pour donner
+          diverses informations.
+        </li>
+      </ul>
+
+      <p>Organigramme de la section :</p>
+
+      <ul>
+        <li>président : sergent Sébastien De Marco</li>
+        <li>vice président sergent Allyriane Jacquot</li>
+        <li>trésorier : adjudant Thierry Martin</li>
+      </ul>
+
+      <p>Formateurs :</p>
+      <ul>
+        <li>capitaine Jean-Francois Dupouy</li>
+        <li>adjudant Stéphane Tarnier</li>
+        <li>adjudant Olivier Périsse</li>
+        <li>adjudant Jean-Pierre Higueras</li>
+        <li>caporal TIffany Zambenedetti</li>
+        <li>sapeur Hugo Bouet</li>
+        <li>sapeur Aurélie Simonet</li>
+        <li>sapeur Quentin Dambrine</li>
+        <li>sapeur Yoann Richy</li>
+        <li>sapeur Morgane Levaillant</li>
+        <li>sapeur Jordan Glemet</li>
+        <li>sapeur Emma Martin</li>
+        <li>sapeur Evan Renouil</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="recrutement">Recrutement</h2>
+      <p>
+        Les recrutements ont lieu tous les 2 ans et le prochain sera en
+        septembre 2024 pour les jeunes âgés de 13 ans révolus l'année des
+        sélections.
+      </p>
+
+      <p class="important">Les recrutements sont actuellement fermés.</p>
+
+      <p>
+        Les sélections de recrutement se déroulent sur une 1/2 journée au Cis de
+        Mérignac.
+      </p>
+      <p>Elles comportent une épreuve :</p>
+
+      <ul>
+        <li>de mathématiques</li>
+        <li>de dictée</li>
+        <li>du sport (killy, gainage, course à pied, pompes)</li>
+        <li>un entretien oral sur les motivations</li>
+      </ul>
+
+      <p>Dans un souci d'équité, les procédures de sélection sont anonymes.</p>
+
+      <p>
+        Les demandes de candidature accompagnées des lettres de motivation sont
+        à adresser à :
+      </p>
+
+      <p>
+        Section jsp Mérignac <br />
+        Caserne des sapeurs-pompiers <br />
+        100, avenue Bon Air <br />
+        33700 MERIGNAC
+      </p>
+    </section>
+
+    <section>
+      <h2 id="histoire">Histoire</h2>
+      <p>
+        La section des Jeunes Sapeurs-Pompier de Paul Saldou - Mérignac existe
+        depuis 2005.
+      </p>
+    </section>
+
+    <section>
+      <h2 id="galerie">Galerie</h2>
+      <div class="pictures">
+        <img *ngFor="let img of images" [src]="urlImages + img.name" />
+      </div>
+      <button [routerLink]="['/gallery']" class="galleryButton">
+        Voir plus...
+      </button>
+    </section>
+
+    <section>
+      <h2 id="contact">Contact</h2>
+      <div class="contact">
+        <div class="info">
+          <p><span CLASS="bold">Téléphone:</span> 05-56-12-89-10</p>
+          <p><span CLASS="bold">Mail:</span> jsp.merignac@gmail.com</p>
+          <p>
+            <span CLASS="bold">Adresse:</span> 100 Avenue Bon air, 33700
+            Mérignac
+          </p>
+        </div>
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2830.1441898230855!2d-0.6507057839562463!3d44.81862707909854!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd54d9af84dbca41%3A0x9f2dfd2ef60d5be6!2s100%20Av.%20Bon%20air%2C%2033700%20M%C3%A9rignac!5e0!3m2!1sen!2sfr!4v1628588273087!5m2!1sen!2sfr"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="sponsor">
+      <!-- <p>Merci à nos sponsors:</p> -->
+
+      <div class="imgs">
+        <img src="/assets/img/mairieMerignac.png" alt="" />
+        <img src="/assets/img/mairiePessac.svg" alt="" />
+        <img src="/assets/img/kingNettoyage.png" alt="" />
+      </div>
+    </section>
+
+    <p class="footer">
+      Section Jeunes-Sapeur Pompier Mérignac © 2020. Tous droits réservés.
+    </p>
+  </div>
+</div>

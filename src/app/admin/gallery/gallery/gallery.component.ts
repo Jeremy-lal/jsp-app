@@ -1,7 +1,7 @@
 import { GalleryFormComponent } from './../../shared/components/gallery-form/gallery-form.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { IGallery } from './../../../core/models/gallery.model';
+import { IGalleryImg } from './../../../core/models/gallery.model';
 import { GalleryService } from './../../../core/services/gallery-service';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./gallery.component.scss']
 })
 export class GalleryComponent implements OnInit {
-  galleryImgs$!: Observable<IGallery[]>;
+  galleryImgs$!: Observable<IGalleryImg[]>;
   urlImages = environment.serverUrl.gallery;
 
   displayedColumns = ['position', 'name', 'actions']
@@ -33,7 +33,7 @@ export class GalleryComponent implements OnInit {
     dialogRef.afterClosed().subscribe(() => this.getGallery())
   }
 
-  deleteImg(img: IGallery) {
+  deleteImg(img: IGalleryImg) {
     this.galleryService.delete(img).subscribe(() => this.getGallery())
   }
 }

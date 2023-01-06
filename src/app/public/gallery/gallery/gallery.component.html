@@ -1,0 +1,10 @@
+<div class="grid-container">
+  <div class="column" *ngFor="let imgs of imagesDivided">
+    <img
+      loading="lazy"
+      *ngFor="let img of imgs"
+      [src]="urlImages + img.name"
+      [alt]="img.name"
+    />
+  </div>
+</div>
