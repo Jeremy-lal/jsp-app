@@ -1,0 +1,90 @@
+.comment {
+  display: flex;
+  flex-direction: row;
+  padding: 8px 20px;
+
+  .content {
+    padding-left: 8px;
+    margin-bottom: 8px;
+    .customer {
+      display: flex;
+
+      .name {
+        font-weight: bold;
+        font-size: 16px;
+        padding-right: 14px;
+        margin-bottom: 0;
+      }
+
+      .date {
+        color: #616061;
+        font-size: 12px;
+      }
+    }
+
+    .message p {
+      font-size: 15px;
+      padding: 0.3rem;
+      overflow: hidden;
+    }
+  }
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+img {
+  width: 50px;
+  height: 50px;
+}
+
+.action {
+  padding-left: 10%;
+  display: none;
+  justify-self: flex-end;
+}
+
+i {
+  padding-right: 0.5rem;
+  font-size: 1rem;
+  color: rgb(168, 8, 8);
+}
+i:hover {
+  cursor: pointer;
+}
+
+.response {
+  padding-left: 3%;
+}
+.response:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  .message p {
+    font-size: 1.2rem;
+    padding: 0.2rem;
+  }
+
+  .name {
+    font-size: 1.3rem;
+    padding-right: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .message p {
+    font-size: 1rem;
+  }
+
+  .name {
+    font-size: 1.1rem;
+    padding-right: 0.3rem;
+  }
+
+  .action {
+    padding-left: 5%;
+  }
+}

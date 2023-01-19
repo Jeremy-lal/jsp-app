@@ -27,5 +27,7 @@ export class HomeComponent {
     const dragon = new Audio('/assets/audio/dragon.mp3');
     dragon.play()
   }
+
+
 }
 

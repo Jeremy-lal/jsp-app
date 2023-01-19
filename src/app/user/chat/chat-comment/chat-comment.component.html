@@ -1,0 +1,44 @@
+<div class="comment" *ngIf="comment && currentUser">
+  <img [src]="imgUrl + comment.imgURL" alt="user" />
+  <div class="content">
+    <div class="customer">
+      <p class="name">{{ comment.firstname }} {{ comment.lastname }}</p>
+      <p class="date">
+        {{ comment.create_at | date : "dd/MM/yy  HH:mm:ss" }}
+      </p>
+      <div class="action">
+        <button
+          (click)="displayResponse()"
+          title="Répondre"
+          *ngIf="mode === 'basic'"
+        >
+          <i class="fas fa-reply"></i>
+        </button>
+        <button
+          (click)="updateComment(comment)"
+          title="Modifier"
+          *ngIf="comment.lastname === currentUser.lastname"
+        >
+          <i class="fas fa-edit"></i>
+        </button>
+        <button
+          (click)="deleteComment(comment)"
+          title="Supprimer"
+          *ngIf="
+            comment.lastname === currentUser.lastname ||
+            actionAcces.indexOf(currentUser.status) != -1
+          "
+        >
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="message">
+      <p *ngFor="let line of convertTextArea()">{{ line }}</p>
+    </div>
+  </div>
+</div>
+<div class="response" *ngIf="nbReponse > 0" (click)="displayResponse()">
+  <p>{{ nbReponse }} réponse(s)</p>
+</div>

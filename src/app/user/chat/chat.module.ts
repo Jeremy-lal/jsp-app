@@ -1,3 +1,4 @@
+import { ChatCommentComponent } from './chat-comment/chat-comment.component';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    ChatComponent
+    ChatComponent, ChatCommentComponent
   ],
   imports: [
     CommonModule,

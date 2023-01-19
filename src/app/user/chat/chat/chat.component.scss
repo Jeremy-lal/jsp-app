@@ -2,6 +2,11 @@ mat-drawer-container {
   height: 100vh;
 }
 mat-card,
-comment-form {
+comment-form,
+app-chat-comment {
   width: 100%;
+}
+
+.example-sidenav {
+  width: 320px;
 }

@@ -2,6 +2,8 @@ import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { CommentService } from 'src/app/core/services/comment-service';
+import { Comment } from 'src/app/core/models/comment.model';
 
 @Component({
   templateUrl: './chat.component.html',
@@ -11,12 +13,13 @@ export class ChatComponent implements OnInit {
   channel = 'commun'
   currentUser: IUser | undefined;
   isAdmin = false;
+  comments: Comment[] = [];
 
   channels = ['Commun', 'Question', 'JSP1', 'JSP2', 'JSP3', 'JSP4']
 
   @ViewChild('drawer') drawer: any;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, public commentService: CommentService) { }
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
@@ -33,6 +36,13 @@ export class ChatComponent implements OnInit {
         }
       }
       this.channel = data['channel']
+      this.getChannelComments()
+    })
+  }
+
+  getChannelComments() {
+    this.commentService.getComments(this.channel).subscribe((data) => {
+      this.comments = data;
     })
   }
 

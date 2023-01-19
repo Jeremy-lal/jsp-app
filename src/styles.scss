@@ -12,3 +12,14 @@ body {
 h1 {
   font-weight: 800;
 }
+
+p {
+  margin-bottom: 0 !important;
+}
+
+.comments {
+  .mat-grid-tile-content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+}
