@@ -41,7 +41,7 @@
       <button
         class="answer"
         mat-raised-button
-        *ngIf="comment.nbAnswer > 0"
+        *ngIf="comment.nbAnswer > 0 && !answerMode"
         (click)="displayResponse()"
       >
         {{ comment.nbAnswer }} réponse(s)

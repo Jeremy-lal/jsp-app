@@ -2,7 +2,7 @@ import { INewComment } from './../../../core/models/comment.model';
 import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CommentService } from 'src/app/core/services/comment-service';
 import { Comment } from 'src/app/core/models/comment.model';
 
@@ -10,7 +10,7 @@ import { Comment } from 'src/app/core/models/comment.model';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewInit {
   channel = 'commun'
   currentUser: IUser | undefined;
   isAdmin = false;
@@ -22,8 +22,9 @@ export class ChatComponent implements OnInit {
   channels = ['Commun', 'Question', 'JSP1', 'JSP2', 'JSP3', 'JSP4']
 
   @ViewChild('drawer') drawer: any;
+  @ViewChild('commentsList', { static: true }) commentsList!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private router: Router, private authService: AuthService, public commentService: CommentService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private renderer: Renderer2, private authService: AuthService, public commentService: CommentService) { }
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
@@ -44,27 +45,36 @@ export class ChatComponent implements OnInit {
     })
   }
 
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
   getChannelComments() {
     this.commentService.getComments(this.channel).subscribe((data) => {
       this.comments = data;
     })
   }
 
-  getCommentResponse(comment: Comment) {
+  getCommentResponse(comment: Comment, toogle = true) {
     this.commentSelected = comment;
     this.commentService.getResponseCommentById(comment.id).subscribe((data) => {
-      this.drawer.toggle()
+      if (toogle) this.drawer.toggle()
       this.commentAnswers = data;
     })
   }
 
-  saveComment(txt: string) {
-    const comment: INewComment = {
-      content: txt,
-      grp: this.channel,
-      user_id: this.currentUser?.id!
-    };
-    this.commentService.createComment(comment).subscribe((data) => this.getChannelComments())
+  saveComment(txt: string, commentId?: number) {
+    const comment: INewComment = { content: txt, grp: this.channel, user_id: this.currentUser?.id! };
+    if (commentId) comment.comment_id = commentId;
+
+    this.commentService.createComment(comment).subscribe((data) => {
+      this.getChannelComments()
+      if (commentId) this.getCommentResponse(this.commentSelected!, false)
+    })
+  }
+
+  deleteComment(comment: Comment) {
+    this.commentService.deleteComment(comment.id).subscribe(() => this.getChannelComments())
   }
 
   goToCommun() {
@@ -80,4 +90,9 @@ export class ChatComponent implements OnInit {
     this.drawer.toggle()
   }
 
+  scrollToBottom() {
+    setTimeout(() => {
+      this.renderer.setProperty(this.commentsList.nativeElement, 'scrollTop', this.commentsList.nativeElement.scrollHeight);
+    }, 1)
+  }
 }

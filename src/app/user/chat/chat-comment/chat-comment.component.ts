@@ -14,6 +14,10 @@ export class ChatCommentComponent implements OnInit {
   @Input() comment!: Comment;
   @Input() answerMode = false;
   @Output() showResponse = new EventEmitter<Comment>();
+  @Output() delete = new EventEmitter<Comment>();
+
+
+
   @Output() dataToDisplay = new EventEmitter<Comment[]>();
   @Output() dataResponse = new EventEmitter<Comment[]>();
   @Output() update = new EventEmitter<Comment>();
@@ -39,11 +43,7 @@ export class ChatCommentComponent implements OnInit {
   }
 
   deleteComment(comment: Comment) {
-    // this.commentService.deleteComment(comment.id).subscribe(() => {
-    // });
-    // setTimeout(() => {
-    //   this.reload();
-    // }, 20);
+    this.delete.emit(comment);
   }
 
   reload() {

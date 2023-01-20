@@ -1,15 +1,21 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
-    <app-chat-comment
-      *ngIf="commentSelected"
-      [comment]="commentSelected"
-      [answerMode]="true"
-    ></app-chat-comment>
-    <app-chat-comment
-      *ngFor="let comment of commentAnswers"
-      [comment]="comment"
-      [answerMode]="true"
-    ></app-chat-comment>
+    <div *ngIf="commentSelected">
+      <app-chat-comment
+        [comment]="commentSelected"
+        [answerMode]="true"
+      ></app-chat-comment>
+      <div class="line"></div>
+      <app-chat-comment
+        *ngFor="let comment of commentAnswers"
+        [comment]="comment"
+        [answerMode]="true"
+      ></app-chat-comment>
+      <comment-form
+        [responseMode]="true"
+        (saveComment)="saveComment($event, commentSelected.id)"
+      ></comment-form>
+    </div>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -21,11 +27,12 @@
       </mat-grid-tile>
 
       <mat-grid-tile rowspan="10" class="comments">
-        <div class="comments_list">
+        <div class="comments_list" #commentsList>
           <app-chat-comment
             *ngFor="let comment of comments"
             [comment]="comment"
             (showResponse)="getCommentResponse($event)"
+            (delete)="deleteComment($event)"
           ></app-chat-comment>
         </div>
       </mat-grid-tile>

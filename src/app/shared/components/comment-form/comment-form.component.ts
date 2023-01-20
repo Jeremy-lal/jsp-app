@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CommentFormComponent implements OnInit {
   @Input() channel: string = "Commun";
+  @Input() responseMode: boolean = false;
   @Output() saveComment = new EventEmitter();
   comment = '';
   constructor() { }

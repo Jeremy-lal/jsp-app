@@ -2,6 +2,7 @@ export interface INewComment {
   content: string;
   grp: string;
   user_id: number;
+  comment_id?: number;
 }
 
 export class Comment {
