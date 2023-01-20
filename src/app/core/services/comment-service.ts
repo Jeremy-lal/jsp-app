@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth-service';
-import { Comment } from '../models/comment.model';
+import { Comment, INewComment } from '../models/comment.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,6 @@ export class CommentService {
 
   toUpdate = false;
   locate = 'Commun';
-  commentIdForResponse: number | undefined;
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
@@ -33,9 +32,9 @@ export class CommentService {
     return this.http.get<Comment[]>(CommentService.URL + 'response/grp/' + grp, { headers });
   }
 
-  getResponseCommentById(): Observable<Comment[]> {
+  getResponseCommentById(commentId: number): Observable<Comment[]> {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
-    return this.http.get<Comment[]>(CommentService.URL + 'response/' + this.commentIdForResponse, { headers });
+    return this.http.get<Comment[]>(CommentService.URL + 'response/' + commentId, { headers });
   }
 
   getNumberResponse(message: Comment): Observable<Count> {
@@ -43,7 +42,7 @@ export class CommentService {
     return this.http.get<Count>(CommentService.URL + '/response/number/' + message.id, { headers });
   }
 
-  createComment(newComment: Comment) {
+  createComment(newComment: INewComment) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
     return this.http.post(CommentService.URL, newComment, { headers });
   }

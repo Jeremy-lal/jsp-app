@@ -12,33 +12,26 @@ import { Comment } from 'src/app/core/models/comment.model';
 })
 export class ChatCommentComponent implements OnInit {
   @Input() comment!: Comment;
-  @Input() mode!: string;
-  @Output() showResponse = new EventEmitter<boolean>();
-  @Output() giveMessage = new EventEmitter<Comment>();
+  @Input() answerMode = false;
+  @Output() showResponse = new EventEmitter<Comment>();
   @Output() dataToDisplay = new EventEmitter<Comment[]>();
   @Output() dataResponse = new EventEmitter<Comment[]>();
   @Output() update = new EventEmitter<Comment>();
 
-  nbReponse!: number;
   comments!: Comment[];
   currentUser: IUser | undefined;
   actionAcces = ['admin', 'superAdmin'];
 
   imgUrl = environment.serverUrl.picture;
 
-  constructor(public commentService: CommentService, private authService: AuthService) { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
-    this.commentService.getNumberResponse(this.comment).subscribe((data) => {
-      this.nbReponse = data.count;
-    });
   }
 
   displayResponse() {
-    this.commentService.commentIdForResponse = this.comment.id;
-    this.showResponse.emit(true);
-    this.giveMessage.emit(this.comment);
+    this.showResponse.emit(this.comment);
   }
 
   updateComment(comment: Comment) {
@@ -46,11 +39,11 @@ export class ChatCommentComponent implements OnInit {
   }
 
   deleteComment(comment: Comment) {
-    this.commentService.deleteComment(comment.id).subscribe(() => {
-    });
-    setTimeout(() => {
-      this.reload();
-    }, 20);
+    // this.commentService.deleteComment(comment.id).subscribe(() => {
+    // });
+    // setTimeout(() => {
+    //   this.reload();
+    // }, 20);
   }
 
   reload() {
@@ -59,15 +52,15 @@ export class ChatCommentComponent implements OnInit {
   }
 
   reloadComment() {
-    this.commentService.getComments(this.commentService.locate).subscribe((data) => {
-      this.dataToDisplay.emit(data);
-    });
+    // this.commentService.getComments(this.commentService.locate).subscribe((data) => {
+    //   this.dataToDisplay.emit(data);
+    // });
   }
 
   reloadResponse() {
-    this.commentService.getResponseCommentById().subscribe((datas) => {
-      this.dataResponse.emit(datas);
-    });
+    // this.commentService.getResponseCommentById().subscribe((datas) => {
+    //   this.dataResponse.emit(datas);
+    // });
   }
 
   convertTextArea() {

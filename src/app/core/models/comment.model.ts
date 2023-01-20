@@ -1,3 +1,9 @@
+export interface INewComment {
+  content: string;
+  grp: string;
+  user_id: number;
+}
+
 export class Comment {
   id!: number;
   user_id!: number;
@@ -6,6 +12,7 @@ export class Comment {
   content!: string;
   grp!: string;
   comment_id!: number;
+  nbAnswer!: number;
   show = false;
   update_at: any;
   firstname: any;

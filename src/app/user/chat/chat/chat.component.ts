@@ -1,3 +1,4 @@
+import { INewComment } from './../../../core/models/comment.model';
 import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +15,9 @@ export class ChatComponent implements OnInit {
   currentUser: IUser | undefined;
   isAdmin = false;
   comments: Comment[] = [];
+
+  commentSelected: Comment | undefined;
+  commentAnswers: Comment[] = [];
 
   channels = ['Commun', 'Question', 'JSP1', 'JSP2', 'JSP3', 'JSP4']
 
@@ -44,6 +48,23 @@ export class ChatComponent implements OnInit {
     this.commentService.getComments(this.channel).subscribe((data) => {
       this.comments = data;
     })
+  }
+
+  getCommentResponse(comment: Comment) {
+    this.commentSelected = comment;
+    this.commentService.getResponseCommentById(comment.id).subscribe((data) => {
+      this.drawer.toggle()
+      this.commentAnswers = data;
+    })
+  }
+
+  saveComment(txt: string) {
+    const comment: INewComment = {
+      content: txt,
+      grp: this.channel,
+      user_id: this.currentUser?.id!
+    };
+    this.commentService.createComment(comment).subscribe((data) => this.getChannelComments())
   }
 
   goToCommun() {

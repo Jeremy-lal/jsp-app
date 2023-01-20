@@ -20,6 +20,7 @@ p {
 .comments {
   .mat-grid-tile-content {
     flex-direction: column;
-    overflow-y: auto;
+    overflow: hidden;
+    height: 100%;
   }
 }

@@ -1,6 +1,15 @@
 <mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="over" position="end">
-    <p>responses dnqjkzbdj qzbdnjq bdb</p>
+    <app-chat-comment
+      *ngIf="commentSelected"
+      [comment]="commentSelected"
+      [answerMode]="true"
+    ></app-chat-comment>
+    <app-chat-comment
+      *ngFor="let comment of commentAnswers"
+      [comment]="comment"
+      [answerMode]="true"
+    ></app-chat-comment>
   </mat-drawer>
 
   <div class="example-sidenav-content">
@@ -12,17 +21,17 @@
       </mat-grid-tile>
 
       <mat-grid-tile rowspan="10" class="comments">
-        <app-chat-comment
-          *ngFor="let comment of comments"
-          [comment]="comment"
-        ></app-chat-comment>
-        <button type="button" mat-raised-button (click)="toggleSide()">
-          Toggle sidenav
-        </button>
+        <div class="comments_list">
+          <app-chat-comment
+            *ngFor="let comment of comments"
+            [comment]="comment"
+            (showResponse)="getCommentResponse($event)"
+          ></app-chat-comment>
+        </div>
       </mat-grid-tile>
 
       <mat-grid-tile>
-        <comment-form></comment-form>
+        <comment-form (saveComment)="saveComment($event)"></comment-form>
       </mat-grid-tile>
     </mat-grid-list>
   </div>

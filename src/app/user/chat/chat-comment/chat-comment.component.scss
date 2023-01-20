@@ -1,31 +1,68 @@
-.comment {
-  display: flex;
-  flex-direction: row;
+.container {
   padding: 8px 20px;
+  position: relative;
 
-  .content {
-    padding-left: 8px;
-    margin-bottom: 8px;
-    .customer {
-      display: flex;
+  .comment {
+    display: flex;
+    flex-direction: row;
 
-      .name {
-        font-weight: bold;
-        font-size: 16px;
-        padding-right: 14px;
-        margin-bottom: 0;
+    .content {
+      padding-left: 8px;
+      margin-bottom: 8px;
+      .customer {
+        display: flex;
+
+        .name {
+          font-weight: bold;
+          font-size: 16px;
+          padding-right: 14px;
+          margin-bottom: 0;
+        }
+
+        .date {
+          color: #616061;
+          font-size: 12px;
+        }
       }
 
-      .date {
-        color: #616061;
-        font-size: 12px;
+      .message p {
+        font-size: 15px;
+        padding: 0.3rem;
+        overflow: hidden;
       }
     }
+  }
 
-    .message p {
-      font-size: 15px;
-      padding: 0.3rem;
-      overflow: hidden;
+  .answer {
+    background-color: rgb(10, 21, 53);
+    color: white;
+    margin-top: 8px;
+  }
+
+  .action {
+    position: absolute;
+    right: 20px;
+    top: -10px;
+    background-color: white;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #616061;
+    display: none;
+    justify-self: flex-end;
+
+    i {
+      padding-right: 0.5rem;
+      font-size: 1rem;
+      color: rgb(168, 8, 8);
+      cursor: pointer;
+    }
+  }
+
+  &:hover {
+    background-color: rgb(247, 246, 246);
+
+    .action {
+      display: block;
     }
   }
 }
@@ -38,53 +75,4 @@ button {
 img {
   width: 50px;
   height: 50px;
-}
-
-.action {
-  padding-left: 10%;
-  display: none;
-  justify-self: flex-end;
-}
-
-i {
-  padding-right: 0.5rem;
-  font-size: 1rem;
-  color: rgb(168, 8, 8);
-}
-i:hover {
-  cursor: pointer;
-}
-
-.response {
-  padding-left: 3%;
-}
-.response:hover {
-  cursor: pointer;
-}
-
-@media screen and (max-width: 650px) {
-  .message p {
-    font-size: 1.2rem;
-    padding: 0.2rem;
-  }
-
-  .name {
-    font-size: 1.3rem;
-    padding-right: 0.5rem;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  .message p {
-    font-size: 1rem;
-  }
-
-  .name {
-    font-size: 1.1rem;
-    padding-right: 0.3rem;
-  }
-
-  .action {
-    padding-left: 5%;
-  }
 }
