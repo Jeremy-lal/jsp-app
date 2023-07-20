@@ -1,7 +1,8 @@
 import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
-import { Router } from '@angular/router';
-import { Component, Input, OnInit } from "@angular/core";
+import { Router, ActivatedRoute } from '@angular/router';
+import { Component, Input, OnInit, ViewChild } from "@angular/core";
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'template-sidenav',
@@ -15,14 +16,13 @@ export class TemplateSidenavComponent implements OnInit {
   isAdmin = false;
   currentUser!: IUser | undefined;
 
-  constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit() {
     setTimeout(() => {
       this.isAdmin = this.authService.isAdmin;
       this.currentUser = this.authService.currentUser;
     }, 200)
-
   }
 
   goToChannel(channel: string) {
@@ -38,6 +38,13 @@ export class TemplateSidenavComponent implements OnInit {
     localStorage.removeItem('JWT-TOKEN');
     this.authService.currentUser = undefined;
     this.router.navigateByUrl('/login');
+  }
+
+  @ViewChild('sidenav') sidenav!: MatDrawer;
+  // Add any other necessary properties and methods for your component
+
+  toggleSidenav() {
+    this.sidenav.toggle();
   }
 
 }

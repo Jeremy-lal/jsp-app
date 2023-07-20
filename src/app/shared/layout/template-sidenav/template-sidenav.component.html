@@ -1,5 +1,11 @@
+<!-- Add a menu burger icon to toggle the sidenav -->
+<button mat-icon-button (click)="toggleSidenav()">
+  <i class="fa-solid fa-bars"></i>
+</button>
+
+<!-- Your mat-drawer-container code remains the same -->
 <mat-drawer-container class="container">
-  <mat-drawer mode="side" opened>
+  <mat-drawer mode="side" opened #sidenav>
     <img src="../../../../assets/img/logo.png" alt="logo section" />
 
     <ul>

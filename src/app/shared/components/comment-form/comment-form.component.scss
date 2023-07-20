@@ -10,9 +10,14 @@ textarea {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  // border: 1px solid red;
 }
 
 button {
   background-color: rgb(10, 21, 53);
   color: white;
+}
+
+.response {
+  flex-direction: column;
 }

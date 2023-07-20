@@ -3,14 +3,14 @@ import { INewComment } from './../../../core/models/comment.model';
 import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommentService } from 'src/app/core/services/comment-service';
 import { Comment } from 'src/app/core/models/comment.model';
 import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   templateUrl: './chat.component.html',
-  styleUrls: ['./chat.component.scss']
+  styleUrls: ['./chat.component.scss'],
 })
 export class ChatComponent implements OnInit, AfterViewInit {
   channel = 'commun'
@@ -31,7 +31,6 @@ export class ChatComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
     this.isAdmin = this.authService.isAdmin;
-    console.log(this.currentUser);
 
     this.route.queryParams.subscribe((data) => {
       if (!this.channels.includes(data['channel'])) {

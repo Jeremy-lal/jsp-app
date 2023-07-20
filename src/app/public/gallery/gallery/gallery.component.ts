@@ -42,7 +42,6 @@ export class GalleryComponent implements OnInit {
   }
 
   getImgSelected() {
-    console.log(this.selectedImg);
     return this.images[this.selectedImg].name
   }
 

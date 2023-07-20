@@ -1,6 +1,14 @@
 mat-drawer-container {
   height: 100vh;
+  width: 100%;
 }
+
+mat-drawer-content {
+  height: 100%;
+  width: 100%;
+  padding: 0px !important;
+}
+
 mat-card,
 comment-form,
 app-chat-comment {

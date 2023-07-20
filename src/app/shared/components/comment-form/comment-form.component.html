@@ -1,6 +1,8 @@
-<div class="form">
+<div class="form" [ngClass]="responseMode ? 'response' : ''">
   <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label *ngIf="!responseMode">Envoyer un message dans {{ channel }}</mat-label>
+    <mat-label *ngIf="!responseMode"
+      >Envoyer un message dans {{ channel }}</mat-label
+    >
     <mat-label *ngIf="responseMode">Répondre</mat-label>
     <textarea matInput [(ngModel)]="comment"></textarea>
   </mat-form-field>

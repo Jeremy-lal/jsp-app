@@ -2,8 +2,19 @@
   width: 100vw;
   height: 100vh;
 }
+
 .padding {
-  // padding: 40px 50px;
+  padding: 40px 50px;
+}
+
+button.mat-icon-button {
+  display: none;
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 999;
+  color: rgb(10, 21, 53);
+  font-size: 2rem;
 }
 
 mat-drawer {
@@ -100,5 +111,17 @@ mat-drawer {
 
   li:last-child {
     border-top: 1px solid #e3e7f1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  button.mat-icon-button {
+    display: block;
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 999;
+    color: rgb(10, 21, 53);
+    font-size: 2rem;
   }
 }

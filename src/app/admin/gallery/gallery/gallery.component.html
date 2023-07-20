@@ -3,6 +3,13 @@
   <i class="fa-solid fa-circle-plus" (click)="openGalleryForm()"></i>
 </h1>
 
+<p>
+  <i class="fa-solid fa-triangle-exclamation"></i>Ne pas utiliser d'images avec
+  une taille trop élevée, car cela ralentit la galerie photo par la suite. Vous
+  pouvez utiliser ce site pour réduire leurs tailles :
+  <a target="_blank" href="https://tinypng.com/">TinyPng</a>
+</p>
+
 <table
   *ngIf="galleryImgs$ | async as galleryImgs"
   mat-table

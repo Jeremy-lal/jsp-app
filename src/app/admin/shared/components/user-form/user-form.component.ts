@@ -38,8 +38,6 @@ export class UserFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('sumit');
-
     this.update ? this.updateUser() : this.createUser()
   }
 

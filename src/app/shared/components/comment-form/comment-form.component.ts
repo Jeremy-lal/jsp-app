@@ -15,7 +15,9 @@ export class CommentFormComponent implements OnInit {
   ngOnInit() { }
 
   save() {
-    this.saveComment.emit(this.comment);
-    this.comment = '';
+    if (this.comment.length) {
+      this.saveComment.emit(this.comment);
+      this.comment = '';
+    }
   }
 }

@@ -72,7 +72,12 @@ button {
   background-color: transparent;
 }
 
-img {
-  width: 50px;
-  height: 50px;
+.user-image {
+  width: 50px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 50%; /* If you want a circular image */
+  /* Add any other styling you need */
 }

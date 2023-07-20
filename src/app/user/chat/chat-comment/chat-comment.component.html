@@ -1,6 +1,9 @@
 <div class="container">
   <div class="comment" *ngIf="comment && currentUser">
-    <img loading="lazy" [src]="imgUrl + comment.imgURL" alt="user" />
+    <div
+      class="user-image"
+      [style.backgroundImage]="'url(' + imgUrl + comment.imgURL + ')'"
+    ></div>
     <div class="content">
       <div class="customer">
         <p class="name">{{ comment.firstname }} {{ comment.lastname }}</p>

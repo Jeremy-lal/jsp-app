@@ -33,8 +33,6 @@ export class GalleryFormComponent implements OnInit {
     }
 
     formData.append('picture', this.images, name);
-    console.log(img);
-
 
     this.galleryService.saveImg(formData).subscribe(
       () => {

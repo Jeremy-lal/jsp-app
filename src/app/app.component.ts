@@ -21,18 +21,16 @@ export class AppComponent implements OnInit {
   }
 
   getNavigateInformations() {
-    console.log(window.location.pathname);
-
     this.router.events
       .pipe(
-        filter(event => event instanceof NavigationEnd),
+        filter((event: any) => event instanceof NavigationEnd),
+        tap((event) => this.padding = !event['url'].includes('chat')),
         map(() => this.route),
         map(route => {
           while (route.firstChild) route = route.firstChild;
           return route;
         }),
         filter(route => route.outlet === 'primary'),
-        tap(() => this.padding = !window.location.pathname.includes('chat')),
         mergeMap(route => route.data)
       ).subscribe(data => {
         if (data['templateEmpty']) {
