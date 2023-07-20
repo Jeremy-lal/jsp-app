@@ -1,3 +1,4 @@
+import { ChatCommentUpdateComponent } from './chat-comment-update/chat-comment-update.component';
 import { ChatCommentComponent } from './chat-comment/chat-comment.component';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
@@ -14,12 +15,12 @@ const routes: Route[] = [
 
 @NgModule({
   declarations: [
-    ChatComponent, ChatCommentComponent
+    ChatComponent, ChatCommentComponent, ChatCommentUpdateComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    SharedModule
+    SharedModule,
   ]
 })
 export class ChatModule { }

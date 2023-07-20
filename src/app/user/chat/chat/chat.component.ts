@@ -1,3 +1,4 @@
+import { ChatCommentUpdateComponent } from './../chat-comment-update/chat-comment-update.component';
 import { INewComment } from './../../../core/models/comment.model';
 import { IUser } from 'src/app/core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth-service';
@@ -5,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CommentService } from 'src/app/core/services/comment-service';
 import { Comment } from 'src/app/core/models/comment.model';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   templateUrl: './chat.component.html',
@@ -24,7 +26,7 @@ export class ChatComponent implements OnInit, AfterViewInit {
   @ViewChild('drawer') drawer: any;
   @ViewChild('commentsList', { static: true }) commentsList!: ElementRef;
 
-  constructor(private route: ActivatedRoute, private router: Router, private renderer: Renderer2, private authService: AuthService, public commentService: CommentService) { }
+  constructor(private route: ActivatedRoute, public dialog: MatDialog, private router: Router, private renderer: Renderer2, private authService: AuthService, public commentService: CommentService) { }
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser;
@@ -56,8 +58,8 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   getCommentResponse(comment: Comment, toogle = true) {
-    this.commentSelected = comment;
-    this.commentService.getResponseCommentById(comment.id).subscribe((data) => {
+    if (!comment.comment_id) this.commentSelected = comment;
+    this.commentService.getResponseCommentById(this.commentSelected!.id).subscribe((data) => {
       if (toogle) this.drawer.toggle()
       this.commentAnswers = data;
     })
@@ -74,8 +76,28 @@ export class ChatComponent implements OnInit, AfterViewInit {
   }
 
   deleteComment(comment: Comment) {
-    this.commentService.deleteComment(comment.id).subscribe(() => this.getChannelComments())
+    this.commentService.deleteComment(comment.id).subscribe(() => {
+      this.getChannelComments()
+      this.drawer.close()
+    })
   }
+
+  updateComment(comment: Comment, response: boolean = false) {
+    const dialogRef = this.dialog.open(ChatCommentUpdateComponent, {
+      width: '70vw',
+      data: { commentToUpdate: comment }
+    });
+    dialogRef.afterClosed().subscribe((updatedComment: Comment) => {
+      if (updatedComment) {
+        if (response) {
+          this.getCommentResponse(updatedComment, false);
+        }
+
+        this.getChannelComments();
+      }
+    });
+  }
+
 
   goToCommun() {
     this.router.navigate(['/user/chat'], {

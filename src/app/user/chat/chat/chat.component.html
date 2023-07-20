@@ -4,12 +4,16 @@
       <app-chat-comment
         [comment]="commentSelected"
         [answerMode]="true"
+        (update)="updateComment($event, true)"
+        (delete)="deleteComment($event)"
       ></app-chat-comment>
       <div class="line"></div>
       <app-chat-comment
         *ngFor="let comment of commentAnswers"
         [comment]="comment"
         [answerMode]="true"
+        (update)="updateComment($event, true)"
+        (delete)="deleteComment($event)"
       ></app-chat-comment>
       <comment-form
         [responseMode]="true"
@@ -32,6 +36,7 @@
             *ngFor="let comment of comments"
             [comment]="comment"
             (showResponse)="getCommentResponse($event)"
+            (update)="updateComment($event)"
             (delete)="deleteComment($event)"
           ></app-chat-comment>
         </div>

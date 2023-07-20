@@ -1,0 +1,81 @@
+.container {
+  width: 90%;
+  margin: auto;
+  height: 200px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+}
+
+.update {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  padding: 2rem;
+
+  i {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+  }
+}
+
+h2 {
+  color: black;
+  text-align: center;
+  font-size: 2rem;
+}
+form {
+  border: 1px solid black;
+  width: 95.5%;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  padding: 1.2rem;
+}
+
+textarea {
+  width: 100%;
+  font-size: 1.5rem;
+  border: none;
+  resize: none;
+  outline: none;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+}
+
+i {
+  color: rgb(168, 8, 8);
+  font-size: 2rem;
+}
+
+i:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 650px) {
+  textarea {
+    font-size: 1.2rem;
+  }
+
+  form {
+    padding: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  textarea {
+    font-size: 1rem;
+  }
+
+  form {
+    padding: 0.4rem;
+  }
+}

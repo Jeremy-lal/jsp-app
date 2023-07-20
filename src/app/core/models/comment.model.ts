@@ -5,6 +5,10 @@ export interface INewComment {
   comment_id?: number;
 }
 
+export interface IUpdateComment extends INewComment {
+  id: number;
+}
+
 export class Comment {
   id!: number;
   user_id!: number;

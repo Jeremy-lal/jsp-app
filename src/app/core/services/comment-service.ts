@@ -1,3 +1,4 @@
+import { IUpdateComment } from './../models/comment.model';
 import { environment } from './../../../environments/environment';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -47,7 +48,7 @@ export class CommentService {
     return this.http.post(CommentService.URL, newComment, { headers });
   }
 
-  updateComment(updateComment: Comment) {
+  updateComment(updateComment: IUpdateComment) {
     const headers = new HttpHeaders({ Authorization: 'Bearer ' + this.authService.token });
     const id = updateComment.id;
     return this.http.put(CommentService.URL + id, updateComment, { headers });

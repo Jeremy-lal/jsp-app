@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="update">
+    <i class="fas fa-times" title="Annuler" mat-dialog-close></i>
+    <h2>Modifier votre commentaire</h2>
+  </div>
+
+  <form [formGroup]="commentForm" (ngSubmit)="updateComment()">
+    <textarea
+      formControlName="content"
+      id="content"
+      required
+      #area
+      placeholder="Renseignez votre message"
+    ></textarea>
+
+    <button type="submit" title="Modifier">
+      <i class="fas fa-share-square"></i>
+    </button>
+  </form>
+</div>
